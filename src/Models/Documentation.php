@@ -7,6 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use BinaryTorch\LaRecipe\Traits\Indexable;
 use BinaryTorch\LaRecipe\Traits\HasBladeParser;
 use BinaryTorch\LaRecipe\Traits\HasMarkdownParser;
+use Illuminate\Support\Str;
 
 class Documentation
 {
@@ -44,10 +45,13 @@ class Documentation
      * @param  string  $version
      * @return string
      */
-    public function getIndex($version)
+    public function getIndex($version, string $page)
     {
-        return $this->cache->remember(function() use($version) {
-            $path = base_path(config('larecipe.docs.path').'/'.$version.'/index.md');
+        return $this->cache->remember(function() use($version, $page) {
+            $pageStr = Str::of($page);
+            $subPath = $pageStr->contains('/') ? "/".Str::beforeLast($page, '/') : '';
+
+            $path = base_path(config('larecipe.docs.path').'/'.$version.$subPath.'/index.md');
 
             if ($this->files->exists($path)) {
                 $parsedContent = $this->parse($this->files->get($path));

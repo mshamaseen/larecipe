@@ -70,7 +70,7 @@ a {
                             content: "";
                             position: absolute;
                             left: 0;
-                            z-index: 100; 
+                            z-index: 100;
                             width: 2px;
                             height: 35px;
                             background: var(--primary);
@@ -105,7 +105,7 @@ a {
 
                             &.is-active {
                                 @apply border-l-2 border-primary;
-        
+
                                 a {
                                     @apply font-bold;
                                 }

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @deprecated
+ * @see routes/web.php
+ */
 
 use Illuminate\Support\Facades\Route;
 

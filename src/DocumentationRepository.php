@@ -43,7 +43,7 @@ class DocumentationRepository
     {
         $this->version = $version;
         $this->sectionPage = $page ?: config('larecipe.docs.landing');
-        $this->index = $this->documentation->getIndex($version);
+        $this->index = $this->documentation->getIndex($version, $page);
 
         $this->content = $this->documentation->get($version, $this->sectionPage, $data);
 
